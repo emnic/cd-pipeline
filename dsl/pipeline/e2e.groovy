@@ -9,7 +9,7 @@ branches.each {
             git("git://github.com/${project}.git", branchName)
         }
         steps {
-            maven("test -Dproject.name=${project}/${branchName}")
+            shell("protractor config.js --cucumberOpts.tags='~@wip'")
         }
     }
 }
