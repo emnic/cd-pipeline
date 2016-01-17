@@ -4,7 +4,7 @@ import hudson.plugins.git.GitSCM;
 import hudson.tasks.Shell;
 import javaposse.jobdsl.plugin.*;
 
-def url = "https://github.com/emnic/homecontrol.git"
+def url = "https://github.com/emnic/cd-pipeline.git"
 def jobName = "seed"
 
 project = Jenkins.instance.createProject(FreeStyleProject, jobName)
@@ -13,10 +13,6 @@ gitScm.branches = [new hudson.plugins.git.BranchSpec("*/master")]
 project.scm = gitScm
 
 project.getBuildersList().clear()
-
-//project.getBuildersList().add(new Shell("docker pull niaquinto/gradle"));
-
-//project.getBuildersList().add(new Shell("docker run -v \$PWD:/usr/bin/app --entrypoint=gradle niaquinto/gradle build"));
 
 project.getBuildersList().add(new ExecuteDslScripts(
   new ExecuteDslScripts.ScriptLocation("false","dsl/**/*.groovy",null),
